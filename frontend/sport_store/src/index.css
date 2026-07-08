@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  /* Khai báo đầy đủ bảng màu để dùng được class (ví dụ: text-primary) */
+  --color-primary: #003ec7;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0052ff;
+  --color-on-primary-container: #dfe3ff;
+  
+  --color-secondary: #506600;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #c1f100;
+  --color-on-secondary-container: #546b00;
+  
+  --color-tertiary: #4f4e4f;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #676667;
+  --color-on-tertiary-container: #e7e5e6;
+  
+  --color-surface: #f8f9fa;
+  --color-on-surface: #191c1d;
+  --color-surface-variant: #e1e3e4;
+  --color-on-surface-variant: #434656;
+  
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+  
+  --color-outline: #737688;
+  --color-outline-variant: #c3c5d9;
+  
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  
+  --color-background: #f8f9fa; /* ĐÃ THÊM BIẾN NÀY ĐỂ HẾT LỖI */
+
+  --color-tertiary-fixed: #e5e2e3;
+  --color-tertiary-fixed-dim: #c8c6c7;
+  --color-secondary-fixed: #c3f400;
+  --color-secondary-fixed-dim: #abd600;
+
+  /* Spacing */
+  --spacing-margin-desktop: 40px;
+  --spacing-xl: 48px;
+  --spacing-lg: 32px;
+  --spacing-md: 24px;
+  --spacing-sm: 16px;
+  --spacing-xs: 8px;
+
+  /* Typography */
+  --font-lexend: "Lexend", sans-serif;
+}
+
+/* Dùng CSS thuần thay vì @apply để tránh lỗi Vite Plugin */
+@layer base {
+  body {
+    background-color: #f8f9fa;
+    color: #191c1d;
+    font-family: "Lexend", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fill-1 {
+  font-variation-settings: 'FILL' 1;
+}

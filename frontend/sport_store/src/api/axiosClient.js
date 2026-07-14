@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 1. Tạo một instance với các cấu hình cơ bản (Base URL, Timeout)
 const axiosClient = axios.create({
-  baseURL: 'http://localhost:8080/api', // Từ giờ các file khác chỉ cần viết '/products', '/orders'
+  baseURL: 'https://sportshop-03nh.onrender.com/api', // Từ giờ các file khác chỉ cần viết '/products', '/orders'
   timeout: 10000, // Quá 10 giây không phản hồi thì tự động ngắt (tránh treo app)
   headers: {
     'Content-Type': 'application/json',
@@ -49,4 +49,4 @@ axiosClient.interceptors.response.use(
   }
 );
 
-export default axiosClient;
+export default axiosClient;

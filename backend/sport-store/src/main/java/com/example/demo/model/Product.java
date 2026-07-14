@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
 
 	/**
@@ -33,51 +33,51 @@ public class Product {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ProductID")
+	@Column(name = "productid")
 	private Integer productID;
 
 	/**
 	 * Tên sản phẩm
 	 */
-	@Column(name = "ProductName")
+	@Column(name = "productname")
 	private String productName;
 
 	/**
 	 * Mô tả sản phẩm
 	 */
-	@Column(name = "ProductDescription")
+	@Column(name = "productdescription")
 	private String productDescription;
 
 	/**
 	 * Giá cơ bản của sản phẩm
 	 */
-	@Column(name = "BasePrice")
+	@Column(name = "baseprice")
 	private BigDecimal basePrice;
 
 	/**
 	 * Ảnh sản phẩm
 	 */
-	@Column(name = "Photo")
+	@Column(name = "photo")
 	private String photo;
 
 	/**
 	 * Trạng thái bán
 	 */
-	@Column(name = "IsSelling")
+	@Column(name = "isselling")
 	private Boolean isSelling;
 
 	/**
 	 * Loại hàng
 	 */
 	@ManyToOne
-	@JoinColumn(name = "CategoryID")
+	@JoinColumn(name = "categoryid")
 	private Category category;
 
 	/**
 	 * Hãng của sản phẩm
 	 */
 	@ManyToOne
-	@JoinColumn(name = "BrandID")
+	@JoinColumn(name = "brandid")
 	private Brand brand;
 	
 	@OneToMany(mappedBy = "product")

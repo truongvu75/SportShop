@@ -9,24 +9,24 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "Account")
+@Table(name = "account")
 public class Account implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "AccountID")
+    @Column(name = "accountID")
     private Long accountId;
 
-    @Column(name = "Username", unique = true, nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
-    @Column(name = "Password", nullable = false)
+    @Column(name = "\"Password\"", nullable = false) // Bọc nháy kép cho Password
     private String password;
 
-    @Column(name = "IsActive")
+    @Column(name = "isactive")
     private boolean isActive;
 
-    @Column(name = "Role") // Trường mới thêm vào DB: Giá trị là "CUSTOMER" hoặc "EMPLOYEE"
+    @Column(name = "\"Role\"") // Bọc nháy kép cho Role
     private String role;
 
     // Sử dụng @Transient cho một danh sách quyền động được gộp trong bộ nhớ khi đăng nhập

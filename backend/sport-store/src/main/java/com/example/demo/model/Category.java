@@ -20,20 +20,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Category")
+@Table(name = "category")
 public class Category {
 	/**
 	 * Mã loại hàng
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CategoryID")
+	@Column(name = "categoryid")
 	private Integer categoryID;
 
 	/**
 	 * Tên loại hàng
 	 */
-	@Column(name = "CategoryName")
+	@Column(name = "categoryname")
 	private String categoryName;
 	
 	@OneToMany(mappedBy = "category")

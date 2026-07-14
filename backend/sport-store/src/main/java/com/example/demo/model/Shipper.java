@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Shipper")
+@Table(name = "shipper")
 public class Shipper {
 
 	/**
@@ -27,18 +27,18 @@ public class Shipper {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ShipperID")
+	@Column(name = "shipperid")
 	private Integer shipperID;
 
 	/**
 	 * Tên đơn vị vận chuyển
 	 */
-	@Column(name = "ShipperName")
+	@Column(name = "shippername")
 	private String shipperName;
 
 	/**
 	 * Số điện thoại đơn vị vận chuyển
 	 */
-	@Column(name = "Phone")
+	@Column(name = "phone")
 	private String phone;
 }

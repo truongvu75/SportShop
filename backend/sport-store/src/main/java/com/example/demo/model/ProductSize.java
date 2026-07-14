@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Size")
+@Table(name = "sizes")
 public class ProductSize {
 
 	/**
@@ -25,13 +25,13 @@ public class ProductSize {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SizeID")
+    @Column(name = "sizeid")
     private Integer sizeID;
 
     /**
      * Tên size
      */
-    @Column(name = "SizeName")
+    @Column(name = "sizename")
     private String sizeName;
 
 }

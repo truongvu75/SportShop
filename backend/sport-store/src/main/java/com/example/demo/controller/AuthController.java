@@ -78,6 +78,7 @@ public class AuthController {
 	public ResponseEntity<?> login(@RequestBody Map<String, String> request) {
 		String username = request.get("username");
 		String password = request.get("password");
+//		System.out.println(password);
 
 		try {
 			// 1. Gọi bộ máy xác thực tự động so khớp username & mật khẩu trong DB

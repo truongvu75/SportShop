@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "[Order]")
+@Table(name = "orders")
 public class Order {
 	
 	/**
@@ -30,49 +30,49 @@ public class Order {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "OrderID")
+	@Column(name = "orderid")
 	private Integer orderID;
 	
 	/**
 	 * Ngày đặt hàng
 	 */
-	@Column(name = "OrderTime")
+	@Column(name = "ordertime")
 	private Date orderTime;
 	
 	/**
 	 * Địa chỉ giao
 	 */
-	@Column(name = "DeliveryAddress")
+	@Column(name = "deliveryaddress")
 	private String deliveryAddress;
 	
 	/**
 	 * Ngày duyệt đơn
 	 */
-	@Column(name = "AcceptTime")
+	@Column(name = "accepttime")
 	private Date acceptTime;
 	
 	/**
 	 * Ngày giao cho đơn vị vận chuyển
 	 */
-	@Column(name = "ShippedTime")
+	@Column(name = "shippedtime")
 	private Date shippedTime;
 	
 	/**
 	 * Ngày giao hàng
 	 */
-	@Column(name = "FinishedTime")
+	@Column(name = "finishedtime")
 	private Date finishedTime;
 	
 	/**
 	 * Phương thức thanh toán
 	 */
-	@Column(name = "PayMethod")
+	@Column(name = "paymethod")
 	private String payMethod;
 	
 	/**
 	 * Tổng thành tiền của đơn hàng
 	 */
-	@Column(name = "TotalAmount")
+	@Column(name = "totalamount")
 	private BigDecimal totalAmount;
 	
 	/*RELATIONSHIP*/
@@ -81,35 +81,35 @@ public class Order {
 	 * Tỉnh/Thành phố nhận hàng
 	 */
 	@ManyToOne
-	@JoinColumn(name = "DeliveryProvince") //FK trong Order trong DB
+	@JoinColumn(name = "deliveryprovince") //FK trong Order trong DB
 	private Province deliveryProvince;
 	
 	/**
 	 * Trạng thái hóa đơn
 	 */
 	@ManyToOne
-	@JoinColumn(name = "Status")
+	@JoinColumn(name = "status")
 	private OrderStatus status;
 	
 	/**
 	 * Đơn vị vận chuyển
 	 */
 	@ManyToOne
-    @JoinColumn(name = "ShipperID")
+    @JoinColumn(name = "shipperid")
     private Shipper shipper;
 
 	/**
 	 * Nhân viên xử lý đơn hàng
 	 */
     @ManyToOne
-    @JoinColumn(name = "EmployeeID")
+    @JoinColumn(name = "employeeid")
     private Employee employee;
 
     /**
      * Khách hàng
      */
     @ManyToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     /**

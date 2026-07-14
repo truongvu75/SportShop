@@ -20,18 +20,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Rating")
+@Table(name = "rating")
 public class Rating {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RatingID")
+    @Column(name = "ratingid")
     private Integer ratingID;
 
     /**
      * Số sao
      */
-    @Column(name = "Star")
+    @Column(name = "star")
     private Integer star;
 
     /**
@@ -43,40 +43,40 @@ public class Rating {
     /**
      * Thời gian đánh giá
      */
-    @Column(name = "CreatedTime")
+    @Column(name = "createdtime")
     private Date createdTime;
 
     /**
      * Sản phẩm được đánh giá
      */
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productid")
     private Product product;
 
     /**
      * Khách hàng đánh giá
      */
     @ManyToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
     
     /**
      * Phản hồi của nhân viên
      */
-    @Column(name = "Reply")
+    @Column(name = "reply")
     private String reply;
     
     /**
      * Thời gian phản hồi
      */
-    @Column(name = "ReplyTime")
+    @Column(name = "replytime")
     private Date replyTime;
     
     /**
      * Nhân viên phản hồi
      */
     @ManyToOne
-    @JoinColumn(name = "ReplyBy")
+    @JoinColumn(name = "replyby")
     private Employee employee;
 
 }

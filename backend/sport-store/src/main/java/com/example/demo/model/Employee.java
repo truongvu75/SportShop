@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public class Employee {
 
 	/**
@@ -29,58 +29,58 @@ public class Employee {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "EmployeeID")
+	@Column(name = "employeeid")
 	private Integer employeeID;
 	
 	/**
 	 * Tên nhân viên
 	 */
-	@Column(name = "EmployeeName")
+	@Column(name = "employeename")
 	private String employeeName;
 	
 	/**
 	 * Số điện thoại
 	 */
-	@Column(name = "Phone")
+	@Column(name = "phone")
 	private String phone;
 	
 	/**
 	 * Địa chỉ
 	 */
-	@Column(name = "Address")
+	@Column(name = "address")
 	private String address;
 	
 	/**
 	 * Email
 	 */
-	@Column(name = "Email")
+	@Column(name = "email")
 	private String email;
 	
 	/**
 	 * Ngày sinh
 	 */
-	@Column(name = "BirthDate")
+	@Column(name = "birthdate")
 	private Date birthDate;
 	
 	/**
 	 * Ảnh
 	 */
-	@Column(name = "Photo")
+	@Column(name = "photo")
 	private String photo;
 	
 	/**
 	 * Trạng thái làm việc
 	 */
-	@Column(name = "IsWorking")
+	@Column(name = "isworking")
 	private boolean isWorking;
 	
 	/**
 	 * Các quyền của nhân viên. Phân các bằng dấu ','
 	 */
-	@Column(name = "RoleNames")
+	@Column(name = "rolenames")
 	private String roleNames;
 	
 	@OneToOne
-	@JoinColumn(name = "AccountID")
+	@JoinColumn(name = "accountid")
 	private Account account;
 }

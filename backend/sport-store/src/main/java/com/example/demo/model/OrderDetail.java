@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "orderdetail")
 public class OrderDetail {
 
 	/**
@@ -29,33 +29,33 @@ public class OrderDetail {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OrderDetailID")
+    @Column(name = "orderdetailid")
     private Integer orderDetailID;
 
     /**
      * Số lượng sản phẩm
      */
-    @Column(name = "Quantity")
+    @Column(name = "quantity")
     private Integer quantity;
 
     /**
      * Giá 
      */
-    @Column(name = "SalePrice")
+    @Column(name = "saleprice")
     private BigDecimal salePrice;
 
     /**
      * Đơn hàng
      */
     @ManyToOne
-    @JoinColumn(name = "OrderID")
+    @JoinColumn(name = "orderid")
     private Order order;
 
     /**
      * Sản phẩm
      */
     @ManyToOne
-    @JoinColumn(name = "VariantID")
+    @JoinColumn(name = "variantid")
     private ProductVariant variant;
 
 }

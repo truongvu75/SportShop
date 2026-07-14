@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart")
 public class Cart {
 
 	/**
@@ -31,14 +31,14 @@ public class Cart {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CartID")
+    @Column(name = "cartid")
     private Integer cartID;
 
     /**
      * Khách hàng, 1 khách hàng chỉ có 1 giỏ
      */
     @OneToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
     
     @OneToMany(mappedBy = "cart")

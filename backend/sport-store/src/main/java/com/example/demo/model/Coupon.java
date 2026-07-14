@@ -19,36 +19,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Coupon")
+@Table(name = "coupon")
 public class Coupon {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CouponID")
+    @Column(name = "couponid")
     private Integer couponID;
 
     /**
      * Mã giảm giá
      */
-    @Column(name = "Code")
+    @Column(name = "code")
     private String code;
 
     /**
      * Phần trăm giảm
      */
-    @Column(name = "DiscountPercent")
+    @Column(name = "discountpercent")
     private Integer discountPercent;
 
     /**
      * Hạn sử dụng
      */
-    @Column(name = "ExpiredDate")
+    @Column(name = "expireddate")
     private Date expiredDate;
 
     /**
      * Lượt sử dụng giới hạn
      */
-    @Column(name = "UsageLimit")
+    @Column(name = "usagelimit")
     private Integer usageLimit;
 
 }

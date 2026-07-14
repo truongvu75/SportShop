@@ -34,25 +34,36 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 	boolean existsByCategory_CategoryID(Integer categoryID);
 
 	/**
-	 * Lấy ra danh sách sản phẩm bán chạy nhất
+	 * Lấy ra danh sách sản phẩm bán chạy nhất * @param brandID
 	 * 
+	 * @param categoryID
 	 * @param pageable
 	 * @return
 	 */
 	@Query(value = """
-			    SELECT pd.* FROM OrderDetail od
-			    JOIN [Order] o ON od.OrderID = o.OrderID
-			    JOIN ProductVariant pv ON od.VariantID = pv.VariantID
-			    JOIN Product pd ON pd.ProductID = pv.ProductID
+			    SELECT pd.* FROM orderdetail od
+			    JOIN orders o ON od.orderid = o.orderid
+			    JOIN productvariant pv ON od.variantid = pv.variantid
+			    JOIN product pd ON pd.productid = pv.productid
 			    WHERE
-			      (:brandID IS NULL OR pd.BrandID = :brandID)
-			  		AND
-			      (:categoryID IS NULL OR pd.CategoryID = :categoryID)
-			    	AND
-			       o.Status = 4
-			    GROUP BY pd.ProductID, pd.ProductName, pd.ProductDescription,
-			             pd.BasePrice, pd.Photo, pd.IsSelling, pd.CategoryID, pd.BrandID
-			    ORDER BY SUM(od.Quantity) DESC
+			      (:brandID IS NULL OR pd.brandid = :brandID)
+			      AND
+			      (:categoryID IS NULL OR pd.categoryid = :categoryID)
+			      AND
+			      o.status = 4
+			    GROUP BY pd.productid -- Trong Postgres, gom nhóm theo PK của bảng pd là đủ để SELECT pd.*
+			    ORDER BY SUM(od.quantity) DESC
+			""", countQuery = """
+			    SELECT COUNT(DISTINCT pd.productid) FROM orderdetail od
+			    JOIN orders o ON od.orderid = o.orderid
+			    JOIN productvariant pv ON od.variantid = pv.variantid
+			    JOIN product pd ON pd.productid = pv.productid
+			    WHERE
+			      (:brandID IS NULL OR pd.brandid = :brandID)
+			      AND
+			      (:categoryID IS NULL OR pd.categoryid = :categoryID)
+			      AND
+			      o.status = 4
 			""", nativeQuery = true)
 	List<Product> findTopSellingProducts(@Param("brandID") Integer brandID, @Param("categoryID") Integer categoryID,
 			Pageable pageable);

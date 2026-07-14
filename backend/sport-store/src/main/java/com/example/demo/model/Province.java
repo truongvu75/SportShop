@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Province")
+@Table(name = "province")
 public class Province {
 	/**
 	 * Tên tỉnh/thành phố
 	 */
 	@Id
-	@Column(name = "ProvinceName")
+	@Column(name = "provincename")
 	private String provinceName;
 }

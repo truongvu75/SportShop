@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Color")
+@Table(name = "color")
 public class ProductColor {
 
 	/**
@@ -25,19 +25,19 @@ public class ProductColor {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ColorID")
+    @Column(name = "colorid")
     private Integer colorID;
 
     /**
      * Tên màu
      */
-    @Column(name = "ColorName")
+    @Column(name = "colorname")
     private String colorName;
 
     /**
      * Mã màu hệ 16
      */
-    @Column(name = "HexCode")
+    @Column(name = "hexcode")
     private String hexCode;
 
 }

@@ -17,19 +17,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Brand")
+@Table(name = "brand")
 public class Brand {
 	/**
 	 * Mã hãng 
 	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BrandID")
+    @Column(name = "brandid")
     private Integer brandID;
 
 	/**
 	 * Tên hãng
 	 */
-    @Column(name = "BrandName")
+    @Column(name = "brandname")
     private String brandName;
 }

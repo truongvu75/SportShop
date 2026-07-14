@@ -15,19 +15,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "OrderStatus")
+@Table(name = "orderstatus")
 public class OrderStatus {
 
 	/**
 	 * Mã trạng thái
 	 */
 	@Id
-	@Column(name = "Status")
+	@Column(name = "status")
 	private Integer status;
 	
 	/**
 	 * Mô tả của trạng thái
 	 */
-	@Column(name = "Description")
+	@Column(name = "description")
 	private String description;
 }

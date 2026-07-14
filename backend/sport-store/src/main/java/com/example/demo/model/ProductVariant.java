@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "ProductVariant")
+@Table(name = "productvariant")
 public class ProductVariant {
 
 	/**
@@ -31,46 +31,46 @@ public class ProductVariant {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VariantID")
+    @Column(name = "variantid")
     private Integer variantID;
 
     /**
      * Giá sản phẩm
      */
-    @Column(name = "Price")
+    @Column(name = "price")
     private BigDecimal price;
 
     /**
      * Số lượng còn
      */
-    @Column(name = "Stock")
+    @Column(name = "stock")
     private Integer stock;
 
     /**
      * Mã sản phẩm theo dõi từng biến thể
      */
-    @Column(name = "SKU")
+    @Column(name = "sku")
     private String sku;
 
     /**
      * Sản phẩm
      */
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productid")
     private Product product;
 
     /**
      * Size sản phẩm
      */
     @ManyToOne
-    @JoinColumn(name = "SizeID")
+    @JoinColumn(name = "sizeid")
     private ProductSize size;
 
     /**
      * Màu sắc sản phẩm
      */
     @ManyToOne
-    @JoinColumn(name = "ColorID")
+    @JoinColumn(name = "colorid")
     private ProductColor color;
 
 }

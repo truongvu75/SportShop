@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "CartItem")
+@Table(name = "cartItem")
 public class CartItem {
 
 	/**
@@ -28,33 +28,33 @@ public class CartItem {
 	 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CartItemID")
+    @Column(name = "cartitemid")
     private Integer cartItemID;
 
     /**
      * Số lượng
      */
-    @Column(name = "Quantity")
+    @Column(name = "quantity")
     private Integer quantity;
 
     /**
      * Giá
      */
-    @Column(name = "UnitPrice")
+    @Column(name = "unitprice")
     private BigDecimal unitPrice;
 
     /**
      * Giỏ hàng
      */
     @ManyToOne
-    @JoinColumn(name = "CartID")
+    @JoinColumn(name = "cartid")
     private Cart cart;
 
     /**
      * Sản phẩm cụ thể (sản phẩm biến thể) chứa đầy đủ giá, màu sắc, size
      */
     @ManyToOne
-    @JoinColumn(name = "VariantID")
+    @JoinColumn(name = "variantid")
     private ProductVariant variant;
 
 }

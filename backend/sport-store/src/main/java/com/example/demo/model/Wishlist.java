@@ -18,20 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Wishlist")
+@Table(name = "wishlist")
 public class Wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "WishlistID")
+    @Column(name = "wishlistid")
     private Integer wishlistID;
 
     @ManyToOne
-    @JoinColumn(name = "CustomerID")
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "ProductID")
+    @JoinColumn(name = "productid")
     private Product product;
 
 }

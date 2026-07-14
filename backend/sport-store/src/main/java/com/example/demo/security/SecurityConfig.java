@@ -62,7 +62,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         
         // Cho phép cổng ReactJS truy cập vào Backend
-        configuration.setAllowedOrigins(List.of("http://localhost:5173")); 
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "https://sport-shop-eight.vercel.app/", "https://sport-shop-truong-vu.vercel.app/")); 
         
         // Cho phép tất cả các phương thức HTTP thông dụng
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); 

@@ -306,7 +306,7 @@ export default function Header() {
         {/* PROFILE DROPDOWN / LOGIN BUTTON */}
         {isAuthenticated ? (
           <div className="relative profile-dropdown-container">
-            <button 
+            <button
               onClick={() => setShowProfileDropdown(!showProfileDropdown)}
               className="flex items-center gap-1 p-1 md:pl-2 rounded-full border border-transparent md:border-outline-variant hover:bg-surface-container-low transition-all cursor-pointer"
             >
@@ -357,7 +357,7 @@ export default function Header() {
             className="flex items-center gap-1 px-2.5 py-1.5 md:px-4 md:py-2 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all text-[10px] md:text-xs font-black uppercase tracking-widest"
           >
             <span className="material-symbols-outlined text-[18px]">login</span>
-            <span className="hidden xs:inline-block">Đăng nhập</span>
+            <span className="xs:inline-block">Đăng nhập</span>
           </Link>
         )}
       </div>
@@ -388,7 +388,7 @@ export default function Header() {
 
             {/* Navigation Links */}
             <div className="flex flex-col gap-4 font-['Lexend'] uppercase tracking-wider text-xs">
-              <Link 
+              <Link
                 onClick={() => setShowMobileMenu(false)}
                 className="text-on-surface hover:text-primary transition-colors font-black py-2 border-b border-outline-variant/30 flex items-center gap-2"
                 to="/product?categoryId=23"
@@ -396,7 +396,7 @@ export default function Header() {
                 <span className="material-symbols-outlined text-[18px]">steps</span>
                 GIÀY
               </Link>
-              <Link 
+              <Link
                 onClick={() => setShowMobileMenu(false)}
                 className="text-on-surface hover:text-primary transition-colors font-black py-2 border-b border-outline-variant/30 flex items-center gap-2"
                 to="/product?categoryId=24"
@@ -439,16 +439,16 @@ export default function Header() {
                   ĐƠN HÀNG
                 </span>
                 <div className="flex flex-col gap-2 pl-4 normal-case font-semibold text-xs">
-                  <Link 
+                  <Link
                     onClick={() => setShowMobileMenu(false)}
-                    to="/order/order-history" 
+                    to="/order/order-history"
                     className="text-on-surface-variant hover:text-primary"
                   >
                     Lịch sử mua hàng
                   </Link>
-                  <Link 
+                  <Link
                     onClick={() => setShowMobileMenu(false)}
-                    to="/order/order-history" 
+                    to="/order/order-history"
                     className="text-on-surface-variant hover:text-primary"
                   >
                     Đơn hàng đang giao
@@ -456,7 +456,7 @@ export default function Header() {
                 </div>
               </div>
 
-              <Link 
+              <Link
                 onClick={() => setShowMobileMenu(false)}
                 className="text-on-surface hover:text-primary transition-colors font-black py-2 flex items-center gap-2"
                 to="/wishlist"

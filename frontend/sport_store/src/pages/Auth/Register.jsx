@@ -92,7 +92,7 @@ export default function Register() {
 
             await authApi.register(payload);
             setSuccess('Đăng ký tài khoản thành công! Đang chuyển hướng sang trang đăng nhập...');
-            
+
             // Redirect sau 2 giây
             setTimeout(() => {
                 navigate('/login');
@@ -112,7 +112,7 @@ export default function Register() {
     };
 
     return (
-        <div className="w-full space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="w-full space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700 px-2">
             {/* Header Tabs */}
             <div className="flex gap-8 border-b border-outline-variant">
                 <Link to="/login" className="pb-3 border-b-2 border-transparent text-on-surface-variant font-bold text-lg uppercase tracking-tight hover:text-on-surface transition-all">
@@ -143,14 +143,14 @@ export default function Register() {
                 </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 p-3">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Tên đăng nhập *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="username123" 
-                            type="text" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="username123"
+                            type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             disabled={loading || !!success}
@@ -159,10 +159,10 @@ export default function Register() {
                     </div>
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Họ và Tên *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="Nguyễn Văn A" 
-                            type="text" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="Nguyễn Văn A"
+                            type="text"
                             value={customerName}
                             onChange={(e) => setCustomerName(e.target.value)}
                             disabled={loading || !!success}
@@ -174,10 +174,10 @@ export default function Register() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Số điện thoại *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="0901234567" 
-                            type="tel" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="0901234567"
+                            type="tel"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             disabled={loading || !!success}
@@ -186,10 +186,10 @@ export default function Register() {
                     </div>
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Email *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="email@example.com" 
-                            type="email" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="email@example.com"
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             disabled={loading || !!success}
@@ -200,10 +200,10 @@ export default function Register() {
 
                 <div className="space-y-1.5">
                     <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Địa chỉ chi tiết *</label>
-                    <input 
-                        className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                        placeholder="Số nhà, tên đường, phường/xã..." 
-                        type="text" 
+                    <input
+                        className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                        placeholder="Số nhà, tên đường, phường/xã..."
+                        type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         disabled={loading || !!success}
@@ -214,7 +214,7 @@ export default function Register() {
                 <div className="space-y-1.5">
                     <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Tỉnh / Thành phố *</label>
                     <div className="relative">
-                        <select 
+                        <select
                             className="w-full appearance-none bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary cursor-pointer disabled:opacity-75"
                             value={province}
                             onChange={(e) => setProvince(e.target.value)}
@@ -235,10 +235,10 @@ export default function Register() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Mật khẩu *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="••••••••" 
-                            type="password" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="••••••••"
+                            type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             disabled={loading || !!success}
@@ -247,10 +247,10 @@ export default function Register() {
                     </div>
                     <div className="space-y-1.5">
                         <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1">Xác nhận mật khẩu *</label>
-                        <input 
-                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75" 
-                            placeholder="••••••••" 
-                            type="password" 
+                        <input
+                            className="w-full bg-surface-container-low border border-outline-variant rounded-xl px-4 py-2.5 text-sm outline-none focus:border-primary transition-all disabled:opacity-75"
+                            placeholder="••••••••"
+                            type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             disabled={loading || !!success}
@@ -260,8 +260,8 @@ export default function Register() {
                 </div>
 
                 <div className="pt-2">
-                    <button 
-                        className="w-full bg-primary text-white font-black py-4 rounded-xl hover:bg-primary-container active:scale-[0.98] transition-all shadow-md uppercase tracking-widest text-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed" 
+                    <button
+                        className="w-full bg-primary text-white font-black py-4 rounded-xl hover:bg-primary-container active:scale-[0.98] transition-all shadow-md uppercase tracking-widest text-xs flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
                         type="submit"
                         disabled={loading || !!success}
                     >

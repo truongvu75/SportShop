@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import cartApi from '../api/cartApi';
 import { useAuth } from './AuthContext';
 
@@ -7,6 +8,8 @@ const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
     // Lấy 'isAuthenticated' và mảng 'roles' từ AuthContext của bạn
     const { isAuthenticated, roles } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
     const [cart, setCart] = useState(null);
     const [cartCount, setCartCount] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -65,6 +68,11 @@ export const CartProvider = ({ children }) => {
 
     // Thêm sản phẩm vào giỏ hàng
     const addToCart = async (variantID, quantity) => {
+        // Chưa đăng nhập → redirect về trang login, lưu lại trang hiện tại
+        if (!isAuthenticated) {
+            navigate('/login', { state: { from: location }, replace: true });
+            return false;
+        }
         if (isStaffOrAdmin()) return false;
         setError(null);
         try {

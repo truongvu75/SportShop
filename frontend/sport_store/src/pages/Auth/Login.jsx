@@ -36,7 +36,7 @@ export default function Login() {
         setLoading(true);
         try {
             const data = await authApi.login({ username: username.trim(), password });
-            
+
             // data trả về: { token, username, roles }
             login(data.token, data.username, data.roles);
 
@@ -57,7 +57,7 @@ export default function Login() {
     };
 
     return (
-        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 px-2">
             {/* Header Tabs */}
             <div className="flex gap-8 border-b border-outline-variant">
                 <button className="pb-3 border-b-2 border-primary text-primary font-black text-lg uppercase tracking-tight">
@@ -77,7 +77,7 @@ export default function Login() {
             )}
 
             {/* Form Login */}
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 p-3">
                 <div className="space-y-2">
                     <label className="text-[9px] font-black text-on-surface-variant uppercase tracking-widest ml-1" htmlFor="login-username">
                         Tên đăng nhập

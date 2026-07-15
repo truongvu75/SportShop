@@ -105,22 +105,18 @@ export default function OrderHistory() {
     return (
         <div className="max-w-[1200px] mx-auto px-6 py-10 bg-surface min-h-screen">
             {/* Breadcrumbs - Trải dài toàn bộ chiều rộng phía trên */}
-            <div className="grid grid-cols-12 gap-4"> 
-                <div className="col-span-4">
-                    <nav className="flex items-center gap-2 text-[10px] text-on-surface-variant mb-6 font-bold uppercase tracking-widest">
-                        <Link className="hover:text-primary transition-colors" to="/">Trang chủ</Link>
-                        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-                        <span className="text-on-surface-variant/60">Đơn hàng</span>
-                        <span className="material-symbols-outlined text-[12px]">chevron_right</span>
-                        <span className="text-primary">Lịch sử mua hàng</span>
-                    </nav>
-                </div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                <nav className="flex items-center gap-2 text-[10px] text-on-surface-variant mb-4 sm:mb-6 font-bold uppercase tracking-widest flex-wrap">
+                    <Link className="hover:text-primary transition-colors" to="/">Trang chủ</Link>
+                    <span className="material-symbols-outlined text-[12px]">chevron_right</span>
+                    <span className="text-on-surface-variant/60">Đơn hàng</span>
+                    <span className="material-symbols-outlined text-[12px]">chevron_right</span>
+                    <span className="text-primary">Lịch sử mua hàng</span>
+                </nav>
 
-                <div className="col-span-8 ">
-                    <p className="text-[11px] text-on-surface-variant font-bold uppercase tracking-widest pt-1">
+                <p className="text-[11px] text-on-surface-variant font-bold uppercase tracking-widest mb-4 sm:mb-6 sm:pt-0.5 whitespace-nowrap">
                     Tìm thấy tất cả <span className="text-primary font-black">{totalOrders}</span> đơn hàng
                 </p>
-                </div>
             </div>
 
             {/* Layout Grid chính */}

@@ -37,7 +37,7 @@ public class Rating {
     /**
      * Nội dung đánh giá
      */
-    @Column(name = "Comment")
+    @Column(name = "\"Comment\"")
     private String comment;
 
     /**

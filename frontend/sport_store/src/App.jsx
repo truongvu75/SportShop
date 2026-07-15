@@ -6,6 +6,7 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import EmployeeRoute from './components/Auth/EmployeeRoute';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 // Sử dụng lazy loading
 const HomePage = lazy(() => import('./pages/Home/HomePage'));
@@ -44,6 +45,7 @@ const PageLoader = () => (
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <CartProvider>
           <Suspense fallback={<PageLoader />}>

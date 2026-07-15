@@ -47,7 +47,7 @@ const FilterItem = ({ icon, label, children, disabled = false }) => (
   </div>
 );
 
-export default function Sidebar() {
+export default function Sidebar({ isOpenOnMobile = false, onCloseMobile = null }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryId = searchParams.get('categoryId') || '';
 
@@ -158,23 +158,33 @@ export default function Sidebar() {
     return true; // Các trường hợp bộ sưu tập chung khác -> Hiện tất cả
   });
 
-  return (
-    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-80px)] sticky top-20 pt-6 bg-surface-container-low border-r border-outline-variant z-40 overflow-y-auto">
+  const asideContent = (
+    <div className="flex flex-col h-full bg-surface-container-low pt-6 overflow-y-auto">
       <div className="px-6 mb-4 flex justify-between items-center">
         <div>
           <h2 className="font-display text-[24px] font-bold text-primary tracking-tight">BỘ LỌC</h2>
           <p className="text-on-surface-variant text-[12px]">Tối ưu hóa tìm kiếm</p>
         </div>
 
-        {hasAnyFilter && (
-          <button
-            onClick={handleClearAllFilters}
-            className="flex items-center gap-0.5 text-xs font-bold text-error hover:bg-error/10 px-2 py-1.5 rounded-lg transition-all active:scale-95"
-          >
-            <span className="material-symbols-outlined text-[16px]">filter_alt_off</span>
-            Xóa lọc
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {hasAnyFilter && (
+            <button
+              onClick={handleClearAllFilters}
+              className="flex items-center gap-0.5 text-xs font-bold text-error hover:bg-error/10 px-2 py-1.5 rounded-lg transition-all active:scale-95 cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[16px]">filter_alt_off</span>
+              Xóa lọc
+            </button>
+          )}
+          {onCloseMobile && (
+            <button
+              onClick={onCloseMobile}
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant hover:bg-surface-variant/80 transition-all cursor-pointer"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
+          )}
+        </div>
       </div>
 
       <nav className="flex flex-col gap-2 px-2 flex-grow mb-6">
@@ -214,6 +224,30 @@ export default function Sidebar() {
         </FilterItem>
 
       </nav>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-80px)] sticky top-20 border-r border-outline-variant z-40 bg-surface-container-low">
+        {asideContent}
+      </aside>
+
+      {/* Mobile Sidebar Drawer */}
+      {isOpenOnMobile && (
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/40 backdrop-blur-xs transition-opacity duration-300"
+            onClick={onCloseMobile}
+          />
+          {/* Drawer Content */}
+          <div className="relative w-80 max-w-[85vw] h-full bg-white shadow-2xl flex flex-col z-50 animate-in slide-in-from-left duration-300">
+            {asideContent}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

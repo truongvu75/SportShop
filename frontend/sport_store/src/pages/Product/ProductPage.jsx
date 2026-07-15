@@ -1,114 +1,124 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 
 import Sidebar from '../../components/layout/Sidebar';
 import productApi from '../../api/productApi';
 import wishlistApi from '../../api/wishlistApi';
+import { useCart } from '../../context/CartContext';
 
 
 // ================= PRODUCT CARD =================
 const ProductCard = ({
-    productID,
-    productName,
-    basePrice,
-    description,
-    sold,
-    photo,
-    brand,
+    product,
     isFavorite,
-    onToggleFavorite
-}) => (
-    <div className="group relative bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-[300px] mx-auto flex flex-col">
+    onToggleFavorite,
+    onAddToCart
+}) => {
+    const {
+        productID,
+        productName,
+        basePrice,
+        description,
+        sold,
+        photo,
+        brand
+    } = product;
 
-        {/* IMAGE - Chuyển sang aspect-square đồng bộ với wishlist */}
-        <Link className="block" to={`/product/${productID}`}>
-            <div className="relative aspect-square w-full bg-stone-50 overflow-hidden flex items-center justify-center border-b border-outline-variant/10">
-                <img
-                    alt={productName}
-                    className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-110"
-                    src={photo || "https://i.postimg.cc/X7X8KZXc/demo.png"}
-                    onError={(e) => {
-                        e.target.src = "https://i.postimg.cc/X7X8KZXc/demo.png";
-                    }}
-                />
-                {brand && (
-                    <span className="absolute top-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm z-10">
-                        {brand.brandName || brand}
-                    </span>
-                )}
-            </div>
-        </Link>
+    return (
+        <div className="group relative bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant hover:shadow-lg hover:-translate-y-1 transition-all duration-300 max-w-[300px] mx-auto flex flex-col">
 
-        {/* CONTENT - Giữ nguyên layout và màu sắc nút của bạn */}
-        <div className="p-3 flex flex-col flex-1 bg-white">
-            <div className="flex flex-col mb-1.5">
-                <Link to={`/product/${productID}`}>
-                    <h3 className="font-extrabold text-[15px] leading-tight text-on-surface group-hover:text-primary transition-colors line-clamp-1 mb-1 uppercase">
-                        {productName}
-                    </h3>
-                </Link>
-                <div className="flex items-center justify-between">
-                    <span className="text-primary font-black text-base">
-                        {Number(basePrice).toLocaleString('vi-VN')}đ
-                    </span>
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            onToggleFavorite(productID);
+            {/* IMAGE - Chuyển sang aspect-square đồng bộ với wishlist */}
+            <Link className="block" to={`/product/${productID}`}>
+                <div className="relative aspect-square w-full bg-stone-50 overflow-hidden flex items-center justify-center border-b border-outline-variant/10">
+                    <img
+                        alt={productName}
+                        className="w-full h-full object-contain p-2 transition-transform duration-700 group-hover:scale-110"
+                        src={photo || "https://i.postimg.cc/X7X8KZXc/demo.png"}
+                        onError={(e) => {
+                            e.target.src = "https://i.postimg.cc/X7X8KZXc/demo.png";
                         }}
-                        className="hover:scale-110 transition-transform active:scale-95 flex items-center justify-center"
-                    >
-                        <span className={`material-symbols-outlined text-[20px] transition-colors hover:text-error ${isFavorite ? 'text-error fill-1' : 'text-on-surface-variant'}`}>
-                            favorite
+                    />
+                    {brand && (
+                        <span className="absolute top-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px] font-black tracking-widest uppercase shadow-sm z-10">
+                            {brand.brandName || brand}
                         </span>
+                    )}
+                </div>
+            </Link>
+
+            {/* CONTENT - Giữ nguyên layout và màu sắc nút của bạn */}
+            <div className="p-3 flex flex-col flex-1 bg-white">
+                <div className="flex flex-col mb-1.5">
+                    <Link to={`/product/${productID}`}>
+                        <h3 className="font-extrabold text-[15px] leading-tight text-on-surface group-hover:text-primary transition-colors line-clamp-1 mb-1 uppercase">
+                            {productName}
+                        </h3>
+                    </Link>
+                    <div className="flex items-center justify-between">
+                        <span className="text-primary font-black text-base">
+                            {Number(basePrice).toLocaleString('vi-VN')}đ
+                        </span>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                onToggleFavorite(productID);
+                            }}
+                            className="hover:scale-110 transition-transform active:scale-95 flex items-center justify-center cursor-pointer"
+                        >
+                            <span className={`material-symbols-outlined text-[20px] transition-colors hover:text-error ${isFavorite ? 'text-error fill-1' : 'text-on-surface-variant'}`}>
+                                favorite
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-on-surface-variant text-[11px] line-clamp-2 mb-2 h-8 leading-snug font-medium">
+                    {description}
+                </p>
+
+                {/* Info Row */}
+                <div className="flex items-center justify-between text-[11px] text-on-surface-variant mb-3 font-bold uppercase mt-auto">
+                    <div className="flex items-center gap-1">
+                        <span className="material-symbols-outlined text-[16px] text-secondary fill-1">
+                            check_circle
+                        </span>
+                        <span>Đã bán: {sold || 0}</span>
+                    </div>
+                    <div className="flex gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-primary ring-1 ring-offset-1 ring-primary/20"></span>
+                        <span className="w-2.5 h-2.5 rounded-full bg-on-surface ring-1 ring-offset-1 ring-on-surface/20"></span>
+                    </div>
+                </div>
+
+                {/* Buttons - ẩn trên mobile, tinh chỉnh cho desktop */}
+                <div className="hidden sm:grid grid-cols-2 gap-1.5 mt-auto">
+                    <Link
+                        to={`/product/${productID}`}
+                        className="flex items-center justify-center gap-0.5 bg-primary text-white py-1.5 rounded-lg font-bold text-[9px] uppercase tracking-tight hover:bg-primary-container transition-all active:scale-95 shadow-sm"
+                    >
+                        <span className="material-symbols-outlined text-[13px]">visibility</span>
+                        Chi tiết
+                    </Link>
+                    <button className="flex items-center justify-center gap-0.5 border border-primary text-primary py-1.5 rounded-lg font-bold text-[9px] uppercase tracking-tight hover:bg-primary/5 transition-all active:scale-95">
+                        <span className="material-symbols-outlined text-[13px]">person_check</span>
+                        Thử đồ
                     </button>
                 </div>
             </div>
-
-            {/* Description */}
-            <p className="text-on-surface-variant text-[11px] line-clamp-2 mb-2 h-8 leading-snug font-medium">
-                {description}
-            </p>
-
-            {/* Info Row */}
-            <div className="flex items-center justify-between text-[11px] text-on-surface-variant mb-3 font-bold uppercase mt-auto">
-                <div className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[16px] text-secondary fill-1">
-                        check_circle
-                    </span>
-                    <span>Đã bán: {sold || 0}</span>
-                </div>
-                <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-primary ring-1 ring-offset-1 ring-primary/20"></span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-on-surface ring-1 ring-offset-1 ring-on-surface/20"></span>
-                </div>
-            </div>
-
-            {/* Buttons - Giữ nguyên màu sắc và style của bạn */}
-            <div className="grid grid-cols-2 gap-2 mt-auto">
-                <Link
-                    to={`/product/${productID}`}
-                    className="flex items-center justify-center gap-1 bg-primary text-white py-2 rounded-lg font-bold text-[11px] uppercase tracking-wider hover:bg-primary-container transition-all active:scale-95 shadow-sm"
-                >
-                    <span className="material-symbols-outlined text-[15px]">visibility</span>
-                    Xem chi tiết
-                </Link>
-                <button className="flex items-center justify-center gap-1 border-2 border-primary text-primary py-2 rounded-lg font-bold text-[11px] uppercase tracking-wider hover:bg-primary/5 transition-all active:scale-95">
-                    <span className="material-symbols-outlined text-[15px]">person_check</span>
-                    Thử đồ
-                </button>
-            </div>
         </div>
-    </div>
-);
+    );
+};
 
 // ================= PRODUCT PAGE =================
 export default function ProductPage() {
 
     // ================= URL PARAMS =================
     //Đọc các tham số từ URL để lọc sản phẩm
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    const { addToCart } = useCart();
 
     const categoryId = searchParams.get('categoryId') || '';
     const brandId = searchParams.get('brandId') || '';
@@ -127,6 +137,7 @@ export default function ProductPage() {
     const [totalPages, setTotalPages] = useState(1); //Tổng số trang tìm thấy kết quả
     const [totalProducts, setTotalProducts] = useState(0); //Tổng số sản phẩm được tìm thấy
     const [wishlistIds, setWishlistIds] = useState(new Set());
+    const [showMobileFilter, setShowMobileFilter] = useState(false);
 
     // Fetch wishlist items on mount
     useEffect(() => {
@@ -162,6 +173,32 @@ export default function ProductPage() {
             }
         } catch (err) {
             console.error("Lỗi khi thay đổi wishlist:", err);
+        }
+    };
+
+    // ================= ADD TO CART =================
+    const handleAddToCart = async (product) => {
+        if (!product.variants || product.variants.length === 0) {
+            // Nếu không có variants hoặc chưa tải, chuyển sang trang chi tiết
+            navigate(`/product/${product.productID}`);
+            return;
+        }
+
+        // Tìm variant đầu tiên còn hàng
+        const availableVariant = product.variants.find(v => v.stock > 0);
+        if (!availableVariant) {
+            alert("Sản phẩm này đã hết hàng!");
+            return;
+        }
+
+        try {
+            const success = await addToCart(availableVariant.variantID, 1);
+            if (success) {
+                alert(`Đã thêm ${product.productName} vào giỏ hàng thành công!`);
+            }
+        } catch (err) {
+            console.error("Lỗi khi thêm vào giỏ hàng:", err);
+            alert("Không thể thêm sản phẩm vào giỏ hàng.");
         }
     };
 
@@ -258,10 +295,13 @@ export default function ProductPage() {
     return (
         <div className="flex flex-1 bg-surface">
             {/* SIDEBAR */}
-            <Sidebar />
+            <Sidebar 
+                isOpenOnMobile={showMobileFilter} 
+                onCloseMobile={() => setShowMobileFilter(false)} 
+            />
 
             {/* MAIN CONTENT */}
-            <main className="flex-1 p-[24px] max-w-[1600px] mx-auto">
+            <main className="flex-1 p-3 md:p-6 max-w-[1600px] mx-auto">
 
                 {/* HEADER */}
                 <div className="flex justify-between items-end mb-8">
@@ -286,13 +326,25 @@ export default function ProductPage() {
                         )}
                     </div>
 
-                    {/* SORT */}
-                    <div className="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant shadow-sm">
-                        <span className="text-on-surface-variant text-[11px] font-black uppercase tracking-widest">Sắp xếp:</span>
-                        <button className="flex items-center gap-1 font-black text-primary group text-[11px] uppercase tracking-widest">
-                            Mới nhất
-                            <span className="material-symbols-outlined group-hover:rotate-180 transition-transform text-[18px]">expand_more</span>
+                    {/* SORT & FILTER ON MOBILE */}
+                    <div className="flex items-center gap-2.5">
+                        {/* Nút Lọc di động */}
+                        <button
+                            onClick={() => setShowMobileFilter(true)}
+                            className="md:hidden flex items-center gap-1 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant shadow-sm text-on-surface-variant text-[11px] font-black uppercase tracking-widest cursor-pointer hover:bg-surface-container transition-all active:scale-95"
+                        >
+                            <span className="material-symbols-outlined text-[16px] text-primary">filter_alt</span>
+                            Lọc
                         </button>
+
+                        {/* SORT */}
+                        <div className="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant shadow-sm">
+                            <span className="text-on-surface-variant text-[11px] font-black uppercase tracking-widest">Sắp xếp:</span>
+                            <button className="flex items-center gap-1 font-black text-primary group text-[11px] uppercase tracking-widest">
+                                Mới nhất
+                                <span className="material-symbols-outlined group-hover:rotate-180 transition-transform text-[18px]">expand_more</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -315,13 +367,14 @@ export default function ProductPage() {
 
                 {/* PRODUCT GRID */}
                 {!loading && products.length > 0 && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 min-[480px]:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                         {products.map(product => (
                             <ProductCard
                                 key={product.productID}
-                                {...product}
+                                product={product}
                                 isFavorite={wishlistIds.has(product.productID)}
                                 onToggleFavorite={handleToggleFavorite}
+                                onAddToCart={handleAddToCart}
                             />
                         ))}
                     </div>

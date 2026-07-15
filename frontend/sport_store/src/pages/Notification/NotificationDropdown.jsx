@@ -7,7 +7,7 @@ export default function NotificationDropdown({
   onNotificationClick
 }) {
   return (
-    <div className="absolute right-0 top-12 w-80 md:w-96 bg-white border border-outline-variant shadow-2xl rounded-2xl py-3 z-[110] overflow-hidden text-left font-['Lexend'] animate-in fade-in slide-in-from-top-2 duration-200">
+    <div className="fixed top-20 left-4 right-4 md:absolute md:right-0 md:left-auto md:w-96 md:top-12 bg-white border border-outline-variant shadow-2xl rounded-2xl py-3 z-[110] overflow-hidden text-left font-['Lexend'] animate-in fade-in slide-in-from-top-2 duration-200">
       {/* Header */}
       <div className="px-4 pb-2.5 border-b border-outline-variant/60 flex items-center justify-between">
         <h3 className="text-xs font-black uppercase text-on-surface tracking-wider">Thông báo</h3>
